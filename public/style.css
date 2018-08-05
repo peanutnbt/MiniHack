@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    width:80%;
+    margin:auto;
+}
+.createUser{
+    width:80%;
+    margin:auto;
+}
+.user{
+    width:100%;
+    margin-bottom:20px;
+}
+.user input{
+     width:100%;
+     border-radius:5px;
+     border:  1px solid pink;
+     padding:  10px;
+}
+#createButton{
+    background:#d93e59;
+    border:none;
+    color:white;
+    padding:15px;
+    border-radius:15px;
+    width:20%;
+    display:  block;
+    margin: auto;
+    cursor: pointer;
+}
+
+
+.mainScore{
+    width:80%;
+    margin:auto;
+}
+
+.tableScore{
+    width:100%;
+    border:1px solid #e1788a;
+    border-left:0;
+    border-right:0;
+}
+.tableScore tr{
+    height: 40px;
+}
+.tableScore tr th,td{
+    width:20%;
+    padding:3px;
+}
+.tableScore tr td input{
+    border-radius:5px;
+    border:1px solid pink;
+    padding:5px;
+    width:50%;
+}
+.tableScore tr.sumOfScore{
+    background:#f4677f;
+}
+#addRoundButton{
+    background:#cd3f58;
+    border:none;
+    padding:15px;
+    width:20%;
+    margin:auto;
+    display:block;
+    color:white;
+    border-radius:15px;
+    cursor: pointer;
+}

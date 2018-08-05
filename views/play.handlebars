@@ -1,0 +1,28 @@
+<form class="mainScore" id="mainPlay" method="POST" data="{{game.numberRound}}" >
+      <table class="tableScore">
+        <tr class="rowUser">
+          <th></th>
+          {{#each game.name}}
+              <th>{{this}}</th>
+          {{/each}}
+        </tr>
+        <tr class="sumOfScore">
+            <td>Sum of Score(0)</td>
+          <td>0</td>
+          <td>0</td> 
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr class="round">
+          <td>Round 1</td>
+          <td><input type="number" name="score1" class="inputScore"></td> 
+          <td><input type="number" name="score2" class="inputScore"></td>
+          <td><input type="number" name="score3" class="inputScore"></td>
+          <td><input type="number" name="score4" class="inputScore"></td>
+        </tr>
+      </table>
+     
+  </form>
+
+   <button class="btn btn-primary mt-3"  id="addRoundButton">ADD ROUND</button>
+      
