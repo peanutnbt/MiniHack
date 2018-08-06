@@ -15,7 +15,7 @@ $(document).ready(function(){
                 else{
                     alert("ERROR");
                 }
-            } ,
+            } , 
             error:function(body){
                 // console.log(body);
                 alert("ERROR")
@@ -42,8 +42,8 @@ $(document).ready(function(){
     //         } 
     //     })
     // })
-    let number= $("#mainPlay").attr("data")
-    $("#addRoundButton").on("click",function(){     
+    let number =1;
+    $("#addRoundButton").on("click",function(){
         number++;
         $(".tableScore").append(`
             <tr class="round">
@@ -54,6 +54,9 @@ $(document).ready(function(){
                 <td><input type="number" name="score4" class="inputScore"></td>
             </tr>
         `)
+    })
+    $("#addRoundButton").on("click",function(e){
+        e.preventDefault();
     })
     
 })

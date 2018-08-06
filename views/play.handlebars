@@ -1,4 +1,4 @@
-<form class="mainScore" id="mainPlay" method="POST" data="{{game.numberRound}}" >
+<form class="mainScore" id="mainPlay" method="POST"  data-id="{{game._id}}">
       <table class="tableScore">
         <tr class="rowUser">
           <th></th>
@@ -8,21 +8,29 @@
         </tr>
         <tr class="sumOfScore">
             <td>Sum of Score(0)</td>
-          <td>0</td>
-          <td>0</td> 
-          <td>0</td>
-          <td>0</td>
+          <td>{{sumA game.Round}}</td> 
+          <td>{{sumB game.Round}}</td> 
+          <td>{{sumC game.Round}}</td>
+          <td>{{sumD game.Round}}</td>
         </tr>
-        <tr class="round">
-          <td>Round 1</td>
-          <td><input type="number" name="score1" class="inputScore"></td> 
-          <td><input type="number" name="score2" class="inputScore"></td>
-          <td><input type="number" name="score3" class="inputScore"></td>
-          <td><input type="number" name="score4" class="inputScore"></td>
-        </tr>
-      </table>
-     
-  </form>
 
-   <button class="btn btn-primary mt-3"  id="addRoundButton">ADD ROUND</button>
+        {{#each game.Round}}
+          <tr class="round">
+            <td>Round {{plus @index}}</td>
+            <td><input type="number" name="score1" class="inputScore" readonly="readonly"  value="{{this.pa}}"></td> 
+            <td><input type="number" name="score2" class="inputScore" readonly="readonly"  value="{{this.pb}}"></td>
+            <td><input type="number" name="score3" class="inputScore" readonly="readonly"  value="{{this.pc}}"></td>
+            <td><input type="number" name="score4" class="inputScore" readonly="readonly"  value="{{this.pd}}"></td>
+          </tr>
+        {{/each}}
+        <tr class="round">
+            <td>Round {{plus game.Round.length}}</td>
+            <td><input type="number" name="score1" class="inputScore" value="{{this.pa}}"></td> 
+            <td><input type="number" name="score2" class="inputScore" value="{{this.pb}}"></td>
+            <td><input type="number" name="score3" class="inputScore" value="{{this.pc}}"></td>
+            <td><input type="number" name="score4" class="inputScore" value="{{this.pd}}"></td>
+          </tr>
+      </table>
+      <button class="btn btn-primary mt-3" type="submit " id="addRoundButton">ADD ROUND</button>
+  </form>
       
