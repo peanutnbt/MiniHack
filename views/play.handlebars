@@ -1,4 +1,4 @@
-<form class="mainScore" id="mainPlay" method="POST" data="{{game.numberRound}}" >
+<form class="mainScore" id="mainPlay" method="POST"  data-RoundLength="{{game.Round.length}}" data-id="{{game._id}}">
       <table class="tableScore">
         <tr class="rowUser">
           <th></th>
@@ -6,23 +6,32 @@
               <th>{{this}}</th>
           {{/each}}
         </tr>
+        {{!-- chỉ mới tính tổng lúc truy cập link, chưa tính tổng lúc input --}}
         <tr class="sumOfScore">
             <td>Sum of Score(0)</td>
-          <td>0</td>
-          <td>0</td> 
-          <td>0</td>
-          <td>0</td>
+          <td>{{sumA game.Round}}</td> 
+          <td>{{sumB game.Round}}</td> 
+          <td>{{sumC game.Round}}</td>
+          <td>{{sumD game.Round}}</td>
         </tr>
+        {{!-- khi moi load thi push hết ra dữ liệu va 1 dòng input mới --}}
+        {{#each game.Round}}
+          <tr class="round">
+            <td>Round <input type="number" value="{{plus @index}}" disabled="disable" class="numberRound"></td>
+            <td><input type="number" class="inputScore" readonly="readonly"  value="{{this.pa}}"></td> 
+            <td><input type="number" class="inputScore" readonly="readonly"  value="{{this.pb}}"></td>
+            <td><input type="number" class="inputScore" readonly="readonly"  value="{{this.pc}}"></td>
+            <td><input type="number" class="inputScore" readonly="readonly"  value="{{this.pd}}"></td>
+          </tr>
+        {{/each}}
         <tr class="round">
-          <td>Round 1</td>
-          <td><input type="number" name="score1" class="inputScore"></td> 
-          <td><input type="number" name="score2" class="inputScore"></td>
-          <td><input type="number" name="score3" class="inputScore"></td>
-          <td><input type="number" name="score4" class="inputScore"></td>
-        </tr>
+            <td>Round <input type="number" value="{{plus game.Round.length}}" readonly name="numberOfRound" class="numberRound"></td>
+            <td><input type="number" name="score1" class="inputScore" ></td> 
+            <td><input type="number" name="score2" class="inputScore" ></td>
+            <td><input type="number" name="score3" class="inputScore" ></td>
+            <td><input type="number" name="score4" class="inputScore" ></td>
+          </tr>
       </table>
-     
+      <button class="btn btn-primary mt-3" type="submit " id="addRoundButton" >ADD ROUND</button>
   </form>
-
-   <button class="btn btn-primary mt-3"  id="addRoundButton">ADD ROUND</button>
       
