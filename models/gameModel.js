@@ -9,8 +9,7 @@ var InnerArray = new mongoose.Schema({
   pd:{type:Number,default:0}
   })
   
-let GameSchema = new Schema({
-   numberRound: {type: Number , default: 0}, 
+let GameSchema = new Schema({ 
     name: {type: Array},
     Round: [InnerArray]
 })

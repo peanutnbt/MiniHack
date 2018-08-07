@@ -6,7 +6,7 @@ let app= express();
 
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine","handlebars");
-var hbs = exphbs.create({
+var hbs = exphbs.create({//khai báo helper cho handlebars
     helpers: {
         times:function () { return null; },
         plus:function () { return null; }
@@ -47,7 +47,7 @@ app.get("/game/:gameId",(req,res)=>{
         else{
             res.render("play",{
                 game: resFind,
-                helpers: {
+                helpers: {//tạo helper viết function xử lý biến cho handlebars play
                     times: function(n, block) {
                         var accum = '';
                         for(var i = 0; i <= n; ++i)
@@ -85,18 +85,38 @@ app.get("/game/:gameId",(req,res)=>{
                     }
                 }
             })
-        }
+        } 
     })
 })
-// app.post("/game/:gameId",(req,res)=>{
-//     console.log(req.params.gameId)
-//     GameModel.findById(req.params.gameId,(err,resFind)=>{
-//         let currentROund=resFind.Round.length;
-//         console.log(currentROund)
-//         QuestionModel.update({_id:req.params.gameId},{$set: {Round:[currentROund][req.body.score1,req.body.score2,req.body.score3,req.body.score4]}})
-//     })
-     
-// })
+
+app.post("/game/:gameId",(req,res)=>{
+    GameModel.findById(req.params.gameId,(err,resFind)=>{
+        let currentRound=resFind.Round.length;
+        console.log(req.body)
+        console.log(req.body.numberOfRound)
+        console.log(currentRound)
+        if(req.body.numberOfRound>currentRound){
+            var newRound=resFind.Round[currentRound-1].round+1;
+            var Roundadd={"pa":req.body.score1,"pb":req.body.score2,"pc":req.body.score3,"pd":req.body.score4,"round":newRound}   
+            resFind.Round.push(Roundadd)
+        }
+        else{
+            var newRound=resFind.Round[currentRound-2].round+1;
+            var Roundadd={"pa":req.body.score1,"pb":req.body.score2,"pc":req.body.score3,"pd":req.body.score4,"round":newRound}
+            
+            resFind.Round.pop()
+            resFind.Round.push(Roundadd)
+        }
+        
+        GameModel.update({_id:req.params.gameId},{$set: {Round:resFind.Round}},function(err,doc){
+            if(err){
+                res.status(201).send({success:0,errMsg:err})
+            }
+            else res.status(201).send({success:1})
+        })
+            
+    })
+})
 app.use(express.static("./public"));
 app.listen(9999,function(err){
     if(err) console.log(err)

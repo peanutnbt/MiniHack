@@ -87,3 +87,8 @@ a.titleHeader:hover{
     border-radius:15px;
     cursor: pointer;
 }
+
+.numberRound{
+    border:none!important;
+    background: none;
+}
