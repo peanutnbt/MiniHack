@@ -9,29 +9,36 @@
         {{!-- chỉ mới tính tổng lúc truy cập link, chưa tính tổng lúc input --}}
         <tr class="sumOfScore">
             <td>Sum of Score(0)</td>
-          <td>{{sumA game.Round}}</td> 
-          <td>{{sumB game.Round}}</td> 
-          <td>{{sumC game.Round}}</td>
-          <td>{{sumD game.Round}}</td>
+          <td id="total1">{{sumA game.Round}}</td> 
+          <td id="total2">{{sumB game.Round}}</td> 
+          <td id="total3">{{sumC game.Round}}</td>
+          <td id="total4">{{sumD game.Round}}</td>
         </tr>
         {{!-- khi moi load thi push hết ra dữ liệu va 1 dòng input mới --}}
         {{#each game.Round}}
-          <tr class="round">
-            <td>Round <input type="number" value="{{plus @index}}" disabled="disable" class="numberRound"></td>
-            <td><input type="number" class="inputScore" readonly="readonly"  value="{{this.pa}}"></td> 
-            <td><input type="number" class="inputScore" readonly="readonly"  value="{{this.pb}}"></td>
-            <td><input type="number" class="inputScore" readonly="readonly"  value="{{this.pc}}"></td>
-            <td><input type="number" class="inputScore" readonly="readonly"  value="{{this.pd}}"></td>
+          {{#if @last}}
+          {{else}}
+            <tr class="round">
+            <td>Round <input type="number" value="{{this.round}}" readonly class="numberRound"></td>
+            <td><input type="number" class="inputScore" readonly value="{{this.pa}}"></td> 
+            <td><input type="number" class="inputScore" readonly value="{{this.pb}}"></td>
+            <td><input type="number" class="inputScore" readonly value="{{this.pc}}"></td>
+            <td><input type="number" class="inputScore" readonly value="{{this.pd}}"></td>
           </tr>
+          {{/if}}
         {{/each}}
-        <tr class="round">
-            <td>Round <input type="number" value="{{plus game.Round.length}}" readonly name="numberOfRound" class="numberRound"></td>
-            <td><input type="number" name="score1" class="inputScore" ></td> 
-            <td><input type="number" name="score2" class="inputScore" ></td>
-            <td><input type="number" name="score3" class="inputScore" ></td>
-            <td><input type="number" name="score4" class="inputScore" ></td>
+        {{#each game.Round}}
+          {{#if @last}}
+            <tr class="round">
+            <td>Round <input type="number" value="{{this.round}}" name="numberOfRound" readonly class="numberRound"></td>
+            <td><input type="number" name="score1" class="inputScore"  value="{{this.pa}}"></td> 
+            <td><input type="number" name="score2" class="inputScore"  value="{{this.pb}}"></td>
+            <td><input type="number" name="score3" class="inputScore"  value="{{this.pc}}"></td>
+            <td><input type="number" name="score4" class="inputScore"  value="{{this.pd}}"></td>
           </tr>
+          {{/if}}
+        {{/each}}
       </table>
-      <button class="btn btn-primary mt-3" type="submit " id="addRoundButton" >ADD ROUND</button>
+      <button class="btn btn-primary mt-3" type="submit " id="addRoundButton">ADD ROUND</button>
   </form>
       

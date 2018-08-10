@@ -92,3 +92,13 @@ a.titleHeader:hover{
     border:none!important;
     background: none;
 }
+.messageFill,.messageSumErr{
+    width: 100%;;
+    text-align: center;
+    color:#d93e59;
+}
+.messageSuccess{
+    width: 100%;;
+    text-align: center;
+    color:#06b906;
+}

@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 var InnerArray = new mongoose.Schema({
-  round:  Number,
+  round:  {type:Number},
   pa:{type:Number,default:0},
   pb:{type:Number,default:0},
   pc:{type:Number,default:0},
@@ -11,6 +11,10 @@ var InnerArray = new mongoose.Schema({
   
 let GameSchema = new Schema({ 
     name: {type: Array},
-    Round: [InnerArray]
+    Round: {type:[InnerArray]},
+    sumA:{type:Number,default:0},
+    sumB:{type:Number,default:0},
+    sumC:{type:Number,default:0},
+    sumD:{type:Number,default:0},
 })
 module.exports=mongoose.model("Game",GameSchema)
